@@ -1,0 +1,151 @@
+# ==========================================
+#         MoonCycle Configuration
+#   Paper 1.21.4+  |  Java 21+  |  v1.1
+# ==========================================
+
+# How often (in ticks) the plugin checks whether the moon phase has changed.
+# 20 ticks = 1 second. At the default of 20, the transition fires within
+# one second of the in-game day rolling over. You rarely need to touch this.
+check-interval-ticks: 20
+
+# Whether player PvP preferences (/pvp on|off) are saved to disk and
+# restored when the server restarts. Set to false for event servers
+# that want everyone to start fresh each session.
+persist-normal-phase-pvp: true
+
+# Default PvP state for players who have never used /pvp on or /pvp off.
+# false = PvP off by default (recommended for survival SMP)
+# true  = PvP on by default
+player-pvp-default: false
+
+# Which overworld worlds should be governed by the moon cycle.
+# Linked Nether (_nether) and End (_the_end) dimensions are included automatically.
+enabled-worlds:
+  - "world"
+
+
+# ---- Nether Settings ----
+# By default the Nether ignores moon phases — difficulty stays HARD and
+# PvP is always on (classic purge-zone feel). Both can be changed below.
+nether:
+  affect-difficulty: false
+  force-pvp-always-on: true
+  default-difficulty: "HARD"
+  allow-pvp-toggle: false
+
+# ---- The End Settings ----
+end:
+  follow-overworld-rules: false
+  affect-difficulty: false
+  default-difficulty: "HARD"
+  force-pvp-always-on: false
+  default-pvp: false
+  allow-pvp-toggle: false
+
+
+# ---- Phase-Change Announcements ----
+# Sent to all online players when the moon phase transitions.
+# Supports legacy & color codes and MiniMessage tags.
+# Placeholders: <phase>, <difficulty>, <pvp>
+announcements:
+  enabled: true
+  chat-broadcast: true
+  sound: "BLOCK_BEACON_ACTIVATE"
+  sound-volume: 1.0
+  sound-pitch: 1.0
+  phase-change-message: "&8[&bMoonCycle&8] &fPhase: <phase> &8| &fDifficulty: &e<difficulty> &8| &fPvP: <pvp>"
+
+# ---- First-Join Welcome Message ----
+# Sent once to players who have never logged in before.
+# Placeholders: <player>, <phase>, <difficulty>, <pvp>
+first-join:
+  enabled: true
+  delay-ticks: 40
+  message: "&8[&bMoonCycle&8] &fWelcome &b<player>&f! Phase: <phase> &8| &fDifficulty: &e<difficulty> &8| &fPvP: <pvp>"
+
+# ---- Hard Mode Join Warning ----
+# Shown to returning players who log in during a forced-PvP phase.
+# Useful to avoid players being caught off guard by the Full Moon.
+# Placeholders: <player>, <phase>, <difficulty>, <pvp>
+hard-mode-join-warning:
+  enabled: true
+  delay-ticks: 30
+  message: "&8[&bMoonCycle&8] &c\u26a0 Warning: &fActive phase is <phase> &8| &cDifficulty: Hard &8| &cPvP: Forced ON"
+
+
+# ---- PvP Messages ----
+# All messages players see when toggling PvP or getting blocked from combat.
+# <victim> is replaced with the target player's name in victim-disabled.
+# <phase>  is replaced with the current phase name in locked-forced-phase.
+pvp-messages:
+  enabled:           "&8[&bMoonCycle&8] &aYour personal PvP has been turned ON."
+  disabled:          "&8[&bMoonCycle&8] &eYour personal PvP has been turned OFF."
+  status-on:         "&aON"
+  status-off:        "&cOFF"
+  attacker-disabled: "&cYou have PvP disabled! Use /pvp on to fight."
+  victim-disabled:   "&c<victim> has PvP disabled!"
+  locked-forced-phase: "&cYou cannot disable PvP during the <phase> phase."
+  locked-nether:     "&cPvP is permanently enabled in the Nether."
+  locked-end:        "&cPvP is permanently enabled in The End."
+
+
+# ==========================================
+#           Moon Phase Rules
+# ==========================================
+# Each entry maps one or more Minecraft moon phases to a difficulty and
+# a forced-pvp flag. When forced-pvp is true, all players can fight
+# regardless of their personal /pvp toggle.
+#
+# Supported phase keys (case-insensitive):
+#   FULL_MOON, WAXING_GIBBOUS, WANING_GIBBOUS,
+#   FIRST_QUARTER, LAST_QUARTER, WAXING_CRESCENT, WANING_CRESCENT, NEW_MOON
+#
+# Shorthand aliases that map to multiple phases at once:
+#   LARGE_MOON   -> WAXING_GIBBOUS + WANING_GIBBOUS
+#   HALF_MOON    -> FIRST_QUARTER  + LAST_QUARTER
+#   SMALL_MOON   -> WAXING_CRESCENT + WANING_CRESCENT
+#   NO_MOON      -> NEW_MOON
+#   THIRD_QUARTER -> LAST_QUARTER
+
+phases:
+  # -- Hard Mode (forced PvP, Hard difficulty) --
+  WAXING_GIBBOUS:
+    display-name: "&cLarge Moon"
+    difficulty: "HARD"
+    forced-pvp: true
+
+  FULL_MOON:
+    display-name: "&cFull Moon"
+    difficulty: "HARD"
+    forced-pvp: true
+
+  WANING_GIBBOUS:
+    display-name: "&cLarge Moon"
+    difficulty: "HARD"
+    forced-pvp: true
+
+  # -- Normal Mode (player-toggle PvP, Normal difficulty) --
+  LAST_QUARTER:
+    display-name: "&eHalf Moon"
+    difficulty: "NORMAL"
+    forced-pvp: false
+
+  WANING_CRESCENT:
+    display-name: "&eSmall Moon"
+    difficulty: "NORMAL"
+    forced-pvp: false
+
+  NEW_MOON:
+    display-name: "&eNo Moon"
+    difficulty: "NORMAL"
+    forced-pvp: false
+
+  WAXING_CRESCENT:
+    display-name: "&eSmall Moon"
+    difficulty: "NORMAL"
+    forced-pvp: false
+
+  FIRST_QUARTER:
+    display-name: "&eHalf Moon"
+    difficulty: "NORMAL"
+    forced-pvp: false

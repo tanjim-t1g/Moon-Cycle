@@ -1,0 +1,34 @@
+name: MoonCycle
+version: '${version}'
+main: com.mooncycle.MoonCyclePlugin
+api-version: '1.21'
+description: Dynamic difficulty and PvP based on the moon cycle. Hard mode during full moon, peaceful during no moon.
+authors: [TAG]
+website: https://github.com/tanjim-t1g/Moon-Cycle
+
+commands:
+  moon:
+    description: Check the current moon phase, preview phases, or reload config
+    usage: /<command> [status|preview <phase>|reload]
+    permission: mooncycle.command.status
+  pvp:
+    description: Toggle your personal PvP or see who has PvP on
+    usage: /<command> [status|on|off|players]
+    permission: mooncycle.command.pvp.status
+
+permissions:
+  mooncycle.command.status:
+    description: View the current moon cycle status
+    default: true
+  mooncycle.command.preview:
+    description: Preview any moon phase and its rules
+    default: true
+  mooncycle.command.reload:
+    description: Reload the MoonCycle config
+    default: op
+  mooncycle.command.pvp.status:
+    description: View PvP status and player list
+    default: true
+  mooncycle.command.pvp.toggle:
+    description: Toggle personal PvP on or off
+    default: true

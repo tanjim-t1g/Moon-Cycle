@@ -1,0 +1,32 @@
+# Build directories and artifacts
+target/
+build/
+dependency-reduced-pom.xml
+*.jar
+*.war
+*.ear
+
+# Gradle
+.gradle/
+
+# Logs
+*.log
+
+# IDE & Editor metadata
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.classpath
+.project
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Temporary scratch scripts
+get_mc_ram.py
+index.html
+nginx_default.conf
