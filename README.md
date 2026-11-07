@@ -44,6 +44,8 @@
 | `/pvp on` / `/pvp off` | Toggle personal PvP | `mooncycle.command.pvp.toggle` |
 | `/pvp players` | List online players' PvP states | `mooncycle.command.pvp.status` |
 
->Uses paaper's api
 >Inspired by the purge
+
 >Suggested by Wedn
+
+> This plugin contains Ai code written by Chat GPT and Claude Sonnet model, used for troubleshooting and and improving the code overall , The initial code was written by a human i.e Me.
